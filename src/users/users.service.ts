@@ -2,10 +2,7 @@ import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
-  NotFoundException,
-  UnprocessableEntityException,
 } from '@nestjs/common';
-import { UserDto } from './dto/user.dto';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -21,7 +18,7 @@ export class UsersService {
 
   private async isUnique(username: string): Promise<boolean> {
     return !(await this.findOneByCriteria({
-      username
+      username,
     }));
   }
 
